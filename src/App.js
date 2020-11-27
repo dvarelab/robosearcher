@@ -53,7 +53,7 @@ class App extends React.Component {
           <ScrollY>
            
             <CardList robots={filteredList} />
-            }
+            
           </ScrollY >
       </div>
       );
