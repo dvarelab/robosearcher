@@ -1,25 +1,64 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import SearchBox from './SearchBox';
+import CardList from './CardList'
+import ScrollY from './ScrollY';
+import { robots } from './robots';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+ 
+class App extends React.Component {
 
+    constructor() {
+      super();
+      this.state = {
+        "robots": [],
+        "searchInput": '' 
+      }
+    }
+
+    componentDidMount() {
+    setInterval(
+      () => {
+        this.setState({robots});
+      },
+      3000
+    );
+  }
+
+    onSearch = (event) => {
+      this.setState({"searchInput": event.target.value});
+    }
+
+    
+    
+    render() {
+      const filteredList = this.state.robots.filter((robot) => {
+        return robot.name.toLowerCase().includes(this.state.searchInput.toLowerCase());
+      });
+        if(!this.state.robots.length)
+          return (
+          <div className="App">
+            <header><h1>ROBOSEARCHER</h1></header>
+            <SearchBox searchFun={this.onSearch} />
+          <ScrollY>
+            <div className="Loader"></div>
+          </ScrollY>
+          </div>
+            );
+      return (
+        <div className="App">
+          <header><h1>ROBOSEARCHER</h1></header>
+          <SearchBox searchFun={this.onSearch} />
+          <ScrollY>
+           
+            <CardList robots={filteredList} />
+            }
+          </ScrollY >
+      </div>
+      );
+    }
+  }
+
+ 
 export default App;

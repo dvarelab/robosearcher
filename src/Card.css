@@ -1,0 +1,17 @@
+.Card {
+	background-color: cyan;
+	padding: 2rem;
+	-webkit-box-shadow: 0px 4px 18px 2px rgba(6,106,143,0.85);
+	-moz-box-shadow: 0px 4px 18px 2px rgba(6,106,143,0.85);
+	box-shadow: 0px 4px 18px 2px rgba(6,106,143,0.85);
+	transition: all 0.6s;
+}
+
+.Card:hover {
+	
+	transform: rotate(-3deg);
+}
+
+.Card-img {
+	width: 100%;
+}
